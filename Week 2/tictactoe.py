@@ -59,11 +59,20 @@ def get_player(current_player):
 
 # Find the tile in the list and changes the variable's value, returns new updated list
 def change_tile(player, board_nums):
-    tile = int(input(f'{player}\'s turn to choose a square (1-9): '))
-    i = board_nums.index(tile)
-    board_nums = board_nums[:i]+[player]+board_nums[i+1:]
-    return board_nums
-
+    while True:
+        try:
+            tile = int(input(f'{player}\'s turn to choose a square (1-9): '))
+            if (tile not in board_nums):
+                print('Sorry invalid choice! Please choose a number on the board!')
+                continue
+            else:
+                i = board_nums.index(tile)
+                board_nums = board_nums[:i]+[player]+board_nums[i+1:]
+                return board_nums
+        except ValueError:
+            print('Sorry invalid choice! Please choose a number on the board!')
+            change_tile(player, board_nums)
+            
 # Returns true if there is a win
 def check_win(board_nums):
     return (board_nums[0] == board_nums[1] == board_nums[2] or
