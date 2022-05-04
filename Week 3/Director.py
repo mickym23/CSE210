@@ -83,4 +83,7 @@ class Director:
         print(f"You rolled: {values}")
         print(f"Your score is: {self.total_score}\n")
         self.is_playing == (self.score > 0)
+
+        # Resets self.score so that the totals can add up as new dices are rolled.
+        # previously it added the previous score + the current score to the total
         self.score = 0
